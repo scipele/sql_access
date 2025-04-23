@@ -1,0 +1,6 @@
+/*| Item	     | Main Program Documentation Notes                            |
+  |--------------|-------------------------------------------------------------|
+  | Filename     | comparison.sql                                              |
+  | EntryPoint   | xxx                                                         |
+  | Purpose      | shows side by side comparison of joined and each table      |
+  | By Name,Date | T.Sciple, 04/20/2025                                       */
