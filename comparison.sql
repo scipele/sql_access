@@ -20,3 +20,15 @@ FROM    (
         )
     LEFT JOIN tb2
     ON a_un.fld=tb2.[fld];
+
+
+-- Step 3. Try this where union is embedded
+
+SELECT a_un.fld, tb1.[fld], tb2.[fld]
+FROM (
+    SELECT tb1.fld FROM tb1
+    UNION
+    SELECT tb2.fld FROM tb2
+) AS a_un
+LEFT JOIN tb1 ON a_un.fld = tb1.[fld]
+LEFT JOIN tb2 ON a_un.fld = tb2.[fld];
