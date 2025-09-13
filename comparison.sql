@@ -14,7 +14,7 @@ SELECT tb.fld FROM tb;
 -- the original tables
 SELECT tu.fld, ta.[fld], tb.[fld]
 FROM    (
-        a_un
+        tu
         LEFT JOIN ta
         ON tu.fld=ta.[fld]
         )
