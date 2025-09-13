@@ -5,7 +5,7 @@
   | By Name,Date | T.Sciple, 04/20/2025                                       */
 
 -- Step 1 Create query of the joined tables, and save as a_un
-SELECT .fld FROM ta
+SELECT ta.fld FROM ta
 UNION
 SELECT tb.fld FROM tb;
 
