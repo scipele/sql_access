@@ -2,33 +2,21 @@
   |--------------|-------------------------------------------------------------|
   | Filename     | comparison.sql                                              |
   | Purpose      | shows side by side comparison of joined and each table      |
-  | By Name,Date | T.Sciple, 04/20/2025                                       */
+  | By Name,Date | T.Sciple, 09/13/2025                                       */
 
--- Step 1 Create query of the joined tables, and save as a_un
-SELECT ta.fld FROM ta
-UNION
-SELECT tb.fld FROM tb;
+/* 1. Create Two Tables to use for the example */
+CREATE TABLE ta(fa TEXT);
+INSERT INTO ta VALUES('Iso_1001'), ('Iso_1002'), ('Iso_1003'), ('Iso_1005'), ('Iso_1006');
 
+CREATE TABLE tb(fb TEXT);
+INSERT INTO tb VALUES('Iso_1001'),('Iso_1002'),('Iso_1004'),('Iso_1005'),('Iso_1007');
 
--- Step 2 Next create two separate left joins of the union above and each of 
--- the original tables
-SELECT tu.fld, ta.[fld], tb.[fld]
-FROM    (
-        tu
-        LEFT JOIN ta
-        ON tu.fld=ta.[fld]
-        )
-    LEFT JOIN tb
-    ON tu.fld=tb.[fld];
-
-
--- Step 3. Try this where union is embedded
-
-SELECT tu.fld, ta.[fld], tb.[fld]
+/* 2. Union query embedded inside of two joins */
+SELECT tu.fu, ta.fa, tb.fb
 FROM (
-    SELECT ta.fld FROM ta
+    SELECT ta.fa AS fu FROM ta
     UNION
-    SELECT tb.fld FROM tb
+    SELECT tb.fb AS fu FROM tb
 ) AS tu
-LEFT JOIN ta ON tu.fld = ta.[fld]
-LEFT JOIN tb ON tu.fld = tb.[fld];
+LEFT JOIN ta ON tu.fu = ta.fa
+LEFT JOIN tb ON tu.fu = tb.fb;
