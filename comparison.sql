@@ -12,11 +12,17 @@ CREATE TABLE tb(fb TEXT);
 INSERT INTO tb VALUES('Iso_1001'),('Iso_1002'),('Iso_1004'),('Iso_1005'),('Iso_1007');
 
 /* 2. Union query embedded inside of two joins */
-SELECT tu.fu, ta.fa, tb.fb
-FROM (
-    SELECT ta.fa AS fu FROM ta
-    UNION
-    SELECT tb.fb AS fu FROM tb
-) AS tu
-LEFT JOIN ta ON tu.fu = ta.fa
-LEFT JOIN tb ON tu.fu = tb.fb;
+SELECT DISTINCT
+    qu.fu,
+    ta.fa,
+    tb.fb
+FROM
+    (
+        (
+            SELECT DISTINCT ta.fa AS fu FROM ta
+            UNION
+            SELECT DISTINCT tb.fb AS fu FROM tb
+        ) AS qu
+        LEFT JOIN ta ON ta.fa = qu.fu
+    )
+    LEFT JOIN tb ON tb.fb = qu.fu;
